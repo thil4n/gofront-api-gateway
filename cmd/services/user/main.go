@@ -9,21 +9,23 @@ import (
 
 
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!\n")
-}
 
+
+func health(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "OK!\n")
+}
 
 func echo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Echo: Hello World!\n")
+	fmt.Fprintf(w, "Method: %s\n", r.Method)
+	fmt.Fprintf(w, "Path: %s\n", r.URL.Path)
+	fmt.Fprintf(w, "Query: %s\n", r.URL.RawQuery)
+	fmt.Fprintf(w, "Remote Address: %s\n", r.RemoteAddr)
 }
-
-
 
 func main(){
 	mux := http.NewServeMux()
 
-    mux.HandleFunc("/hello", hello	)
+    mux.HandleFunc("/health", health	)
     mux.HandleFunc("/echo", echo)
 
 

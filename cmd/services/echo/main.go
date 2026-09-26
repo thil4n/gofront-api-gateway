@@ -7,10 +7,6 @@ import (
 )
 
 
-
-
-
-
 func health(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "OK!\n")
 }
